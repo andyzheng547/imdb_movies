@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../lib/imdb_movies.rb'
+
+ImdbMovies::CLI.new.call

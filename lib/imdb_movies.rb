@@ -1,5 +1,3 @@
-require "imdb_movies/version"
+require_relative "./imdb_movies/version"
+require_relative "./imdb_movies/cli"
 
-module ImdbMovies
-  # Your code goes here...
-end
