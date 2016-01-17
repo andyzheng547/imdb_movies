@@ -2,6 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
+# Scrapes IMDB's main page for movie titles and links on right sidebar
 class ImdbScraper
 
 	URL = "http://www.imdb.com"
@@ -21,21 +22,24 @@ class ImdbScraper
 		sections.each{|s| 
 			category = s.css(".widget_header .oneline h3").text
 			if category == "Opening This Week" || category == "Now Playing (Box Office)" || category == "Coming Soon"
-				link = URL + s.css(".seemore a").attr("href").value if category != ""
+				category_link = URL + s.css(".seemore a").attr("href").value if category != ""
 			end
 
-			movies_titles = s.css(".widget_content .title a")
+			# movies contains movie title and a link to the IMDB page
+			movie_titles = s.css(".widget_content .title")
 			movies = []
-			movies_titles[0...3].each{|m| movies << m.text}
+			movie_titles[0...5].each{|m| movies << [m.text, URL + m.css("a").attr("href").value]}
 
 			# Only save parts with movies
 			# IMDB's site uses the same classes for every sidebar div
 			# No ids to differentiate movies from social in sidebar
 			if category == "Opening This Week" || category == "Now Playing (Box Office)" || category == "Coming Soon"
-				categories.push([category, movies, link])			
+				categories.push([[category, category_link], movies])			
 			end
 		}
 		categories
+
 	end
 
 end
+
