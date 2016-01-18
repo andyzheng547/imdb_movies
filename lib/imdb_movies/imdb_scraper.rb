@@ -1,6 +1,4 @@
-require 'open-uri'
-require 'nokogiri'
-require 'pry'
+require_relative 'movies_scraper.rb'
 
 # Scrapes IMDB's main page for movie titles and links on right sidebar
 class ImdbScraper
@@ -29,8 +27,18 @@ class ImdbScraper
 			# movies contains movie title and a link to the IMDB page
 			movie_titles = s.css(".widget_content .title")
 			movies = []
+
 			begin
-				movie_titles[0...5].each{|m| movies << [m.text, URL + m.css("a").attr("href").value]}
+				category_movies = MoviesScraper.new(category_link)
+				case category
+				when "Opening This Week"
+					category_movies.opening
+				when "Now Playing (Box Office)"
+					category_movies.now_playing
+				when "Coming Soon"
+					category_movies.coming_soon
+				end
+				movies << category_movies
 			rescue NoMethodError
 			end
 
@@ -42,7 +50,6 @@ class ImdbScraper
 			end
 		}
 		categories
-
 	end
 
 end

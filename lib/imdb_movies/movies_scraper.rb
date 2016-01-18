@@ -1,7 +1,4 @@
 require_relative 'movie.rb'
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
 
 class MoviesScraper
 	attr_accessor :movie_links, :url, :opening_week

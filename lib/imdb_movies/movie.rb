@@ -1,8 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-require 'openssl'
-require 'pry'
-
 class Movie
 	attr_accessor :url, :name, :movie_rating, :length, :genres, :release_date, :imdb_rating, :description, :directors, :writers, :cast, :trailer_link
 
@@ -74,14 +69,3 @@ class Movie
 		exec("open #{@trailer_link}")
 	end
 end
-
-
-
-
-
-
-
-
-
-
-

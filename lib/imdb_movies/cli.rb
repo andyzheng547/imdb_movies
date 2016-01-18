@@ -2,7 +2,6 @@
 
 require_relative 'imdb_scraper.rb'
 require_relative 'navigation.rb'
-require 'pry'
 
 class ImdbMovies::CLI
 
@@ -31,6 +30,7 @@ class ImdbMovies::CLI
 			main_menu if !DONT_DISPLAY_MENU_IF.include?(user_input)
 		end
 
+		puts "\n\nThank You for using IMDB Movies."
 	end
 
 	# Displays categories (opening this week, now playing, coming soon) 
@@ -44,7 +44,7 @@ class ImdbMovies::CLI
 		imdb_main = ImdbScraper.new.scrape
 
 		# Displays categories
-		imdb_main.each.with_index(1){|section, index| 
+		imdb_main[0...5].each.with_index(1){|section, index| 
 			puts "\n#{index} - #{section[0][0].gsub(/\(\w+\)/, '')}"
 			section[1].each{|movie|
 				puts "\t\t#{movie[0]}"
