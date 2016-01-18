@@ -17,7 +17,12 @@ class Movie
 		info = Nokogiri::HTML(open(@url)).css(".article.title-overview")
 
 		@name = info.css("tbody h1.header span[itemprop = 'name']").text.strip
-		@movie_rating = info.css(".infobar meta[itemprop = 'contentRating']").attr("content").value.strip
+		
+		begin
+			@movie_rating = info.css(".infobar meta[itemprop = 'contentRating']").attr("content").value.strip
+		rescue NoMethodError
+		end
+
 		@length = info.css(".infobar time[itemprop = 'duration']").text.strip
 		@release_date = info.css("a[title = 'See all release dates']").text.strip.gsub(/\s+/, " ")
 		@imdb_rating = info.css(".titlePageSprite.star-box-giga-star").text.strip
@@ -26,6 +31,7 @@ class Movie
 		genres = info.css("span[itemprop = 'genre']")
 		@genres = []
 		genres.each{|g| @genres << g.text }
+		@genres = @genres.join(", ")
 
 		directors = info.css("div[itemprop = 'director'] span[itemprop = 'name']")
 		@directors = []
@@ -56,7 +62,7 @@ class Movie
 		puts "\n#{@name}\n\n"
 		puts "Movie Rating: \t#{@movie_rating}"
 		puts "Length: \t#{@length}"
-		puts "Genre: \t\t#{@movie_rating}"
+		puts "Genre: \t\t#{@genres}"
 		puts "Release Date: \t#{@release_date}"
 		puts "IMDB Rating: \t#{@imdb_rating}/10.0"
 		puts "Director(s): \t#{@directors.join(", ")}"

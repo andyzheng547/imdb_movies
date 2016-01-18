@@ -21,14 +21,18 @@ class ImdbScraper
 
 		sections.each{|s| 
 			category = s.css(".widget_header .oneline h3").text
-			if category == "Opening This Week" || category == "Now Playing (Box Office)" || category == "Coming Soon"
+			begin
 				category_link = URL + s.css(".seemore a").attr("href").value if category != ""
+			rescue NoMethodError
 			end
 
 			# movies contains movie title and a link to the IMDB page
 			movie_titles = s.css(".widget_content .title")
 			movies = []
-			movie_titles[0...5].each{|m| movies << [m.text, URL + m.css("a").attr("href").value]}
+			begin
+				movie_titles[0...5].each{|m| movies << [m.text, URL + m.css("a").attr("href").value]}
+			rescue NoMethodError
+			end
 
 			# Only save parts with movies
 			# IMDB's site uses the same classes for every sidebar div
