@@ -12,3 +12,4 @@ require "imdb_movies"
 
 require "irb"
 IRB.start
+imdb_movies

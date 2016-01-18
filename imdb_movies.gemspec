@@ -1,6 +1,6 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+bin = File.expand_path('../bin', __FILE__)
+$LOAD_PATH.unshift(bin) unless $LOAD_PATH.include?(bin)
 require 'imdb_movies/version'
 
 Gem::Specification.new do |spec|
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = ["imdb_movies"]
-  spec.require_paths = ["lib"]
+  spec.require_paths = ["bin"]
 
   spec.add_dependency "nokogiri"
 
