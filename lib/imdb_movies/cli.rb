@@ -44,9 +44,9 @@ class ImdbMovies::CLI
 		imdb_main = ImdbScraper.new.scrape
 
 		# Displays categories
-		imdb_main[0...5].each.with_index(1){|section, index| 
+		imdb_main.each.with_index(1){|section, index| 
 			puts "\n#{index} - #{section[0][0].gsub(/\(\w+\)/, '')}"
-			section[1].each{|movie|
+			section[1].movie_links.each{|movie|
 				puts "\t\t#{movie[0]}"
 			}
 			puts "\tEnter '#{index}' to see more."
@@ -55,12 +55,13 @@ class ImdbMovies::CLI
 		# nav_links array contains links to pages to see more movies
 		# movie_links array contains arrays with a movie title and a link to that movie on IMDB
 		imdb_main.each{|cat| @nav_links << cat[0][1] }
-		imdb_main.each{|cat| cat[1].each{|movie| @movie_links << movie}}
+		imdb_main.each{|cat| cat[1].movie_links.each{|movie| @movie_links << movie}}
 	end
 
 
 	# Gets user's input and calls a different navigation methood based on input
 	def input(user_input, nav_links, movie_links)
+		movie_links
 		case user_input
 		when "",  "menu", "exit", "quit"
 			return 

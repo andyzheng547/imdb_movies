@@ -24,10 +24,6 @@ class ImdbScraper
 			rescue NoMethodError
 			end
 
-			# movies contains movie title and a link to the IMDB page
-			movie_titles = s.css(".widget_content .title")
-			movies = []
-
 			begin
 				category_movies = MoviesScraper.new(category_link)
 				case category
@@ -38,7 +34,7 @@ class ImdbScraper
 				when "Coming Soon"
 					category_movies.coming_soon
 				end
-				movies << category_movies
+				movies = category_movies
 			rescue NoMethodError
 			end
 
