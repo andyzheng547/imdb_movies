@@ -1,7 +1,4 @@
-require_relative 'movie_links_scraper.rb'
-require_relative 'movie.rb'
-
-class Display
+  class Display
 
 	attr_accessor :links
 

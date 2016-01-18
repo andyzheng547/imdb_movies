@@ -1,5 +1,5 @@
 # Accepts a url from IMDB on initialization and scrapes info for that movie
-class Movie
+  class Movie
 	attr_accessor :url, :name, :movie_rating, :length, :genres, :release_date, :imdb_rating, :description, :directors, :writers, :cast, :trailer_link
 
 	def initialize(url)
@@ -65,6 +65,7 @@ class Movie
 		puts "Director(s): \t#{@directors.join(", ")}"
 		puts "Writer(s): \t#{@writers.join(", ")}"
 		puts "Cast: \t\t#{@cast.join(", ")}"
+		puts "\nTrailer: \t#{@trailer_link}"
 	end
 
 	def open_trailer

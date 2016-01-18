@@ -1,9 +1,5 @@
 # CLI Controller
-
-require_relative 'imdb_scraper.rb'
-require_relative 'display.rb'
-
-class ImdbMovies::CLI
+  class ImdbMovies::CLI
 
 	attr_accessor :imdb_page, :nav_links, :movie_links
 

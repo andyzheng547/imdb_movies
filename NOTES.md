@@ -27,3 +27,7 @@ Movie should show:
 	8-	Cast
 	9-	IMDB Rating (for movies already released)
 	10-	Youtube link to trailer (can enter input to open trailer)
+
+
+##################
+Ready to publish on Monday, January, 18, 2016

@@ -1,7 +1,5 @@
-require_relative 'movie_links_scraper.rb'
-
 # Scrapes IMDB's main page for movie titles and links on right sidebar
-class ImdbScraper
+  class ImdbScraper
 
 	IMDB = "http://www.imdb.com"
 

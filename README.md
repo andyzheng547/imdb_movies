@@ -1,39 +1,23 @@
-# ImdbMovies
+# IMDB Movies
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/imdb_movies`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'imdb_movies'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install imdb_movies
+Welcome to IMDB Movies. This is a Ruby gem that works through CLI. It pulls the info for top current and upcoming films on IMDB's website. Use the CLI to navigate and display information about films you are curious about. Want to see the trailer? We can show it to you.
 
 ## Usage
 
-TODO: Write usage instructions here
+When loaded, the movies will display in 3 categories: Opening This Week, Now Playing, and Coming Soon. The CLI works through text input and is not case sensitive.
 
-## Development
+The program only displays the first 5 movies in each category if available. To see more movies, enter '1' or 'opening this week', '2' or 'now playing' and '3' or 'coming soon'. I personally recommend '1/2/3'.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake false` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+To display information about a movie that you are interested in, enter the movie name. It can be a section of the full movie name. 
+Example: 'Star Wars: The Force Awakens' can be listed with 'star wars'.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+After the movie's info is displayed you have the option of watching the Youtube trailer if you are interested. Just enter 'y' or 'yes' when asked.
+
+When you are done, simple type 'exit' or 'quit' to leave the application.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/imdb_movies. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/azheng249/imdb_movies. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 ## License
 

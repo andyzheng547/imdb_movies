@@ -1,7 +1,4 @@
-require_relative 'movie.rb'
-
-
-class MovieLinksScraper
+  class MovieLinksScraper
 	attr_accessor :movie_links, :url, :opening_week
 
 	IMDB = "http://www.imdb.com"
