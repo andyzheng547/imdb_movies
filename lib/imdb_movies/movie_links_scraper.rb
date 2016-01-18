@@ -1,13 +1,13 @@
 require_relative 'movie.rb'
 
-class MoviesScraper
+
+class MovieLinksScraper
 	attr_accessor :movie_links, :url, :opening_week
 
 	IMDB = "http://www.imdb.com"
 
 	def initialize(url)
-
-		# contains movie titles and links
+		# Array of arrays, each with movie name and link
 		@movie_links = []
 
 		@url = url

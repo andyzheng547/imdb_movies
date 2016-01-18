@@ -1,3 +1,4 @@
+# Accepts a url from IMDB on initialization and scrapes info for that movie
 class Movie
 	attr_accessor :url, :name, :movie_rating, :length, :genres, :release_date, :imdb_rating, :description, :directors, :writers, :cast, :trailer_link
 
@@ -59,7 +60,7 @@ class Movie
 		puts "Length: \t#{@length}"
 		puts "Genre: \t\t#{@genres}"
 		puts "Release Date: \t#{@release_date}"
-		puts "IMDB Rating: \t#{@imdb_rating}/10.0"
+		@imdb_rating != "" ? (puts "IMDB Rating: \t#{@imdb_rating}/10.0") : (puts "IMDB Rating: \tNo Ratings Yet")
 		puts "Description: \t#{@description}"
 		puts "Director(s): \t#{@directors.join(", ")}"
 		puts "Writer(s): \t#{@writers.join(", ")}"
@@ -70,3 +71,4 @@ class Movie
 		exec("open #{@trailer_link}")
 	end
 end
+

@@ -1,13 +1,13 @@
 # CLI Controller
 
 require_relative 'imdb_scraper.rb'
-require_relative 'navigation.rb'
+require_relative 'display.rb'
 
 class ImdbMovies::CLI
 
 	attr_accessor :imdb_page, :nav_links, :movie_links
 
-	DONT_DISPLAY_MENU_IF = ["1", "2", "3", "opening this week", "now playing", "coming soon", "exit", "quit", ""]
+	SKIP_MENU_DISPLAY = ["1", "2", "3", "opening this week", "now playing", "coming soon", "exit", "quit", ""]
 
 	def initialize
 		@nav_links, @movie_links = [], []
@@ -19,7 +19,7 @@ class ImdbMovies::CLI
 
 	# Main CLI
 	def call
-		puts "Welcome to IMDB Movies. Here are some current movies: \n\n"
+		puts "\nWelcome to IMDB Movies. Here are some current movies: \n\n"
 
 		user_input = nil
 
@@ -31,7 +31,9 @@ class ImdbMovies::CLI
 
 			user_input = gets.strip.downcase
 			input(user_input, movie_links)
-			main_menu if !DONT_DISPLAY_MENU_IF.include?(user_input)
+
+			# Only displays the menu again if they entered a movie name or 'menu'
+			main_menu if !SKIP_MENU_DISPLAY.include?(user_input)
 		end
 
 		puts "\n\nThank You for using IMDB Movies."
@@ -50,13 +52,11 @@ class ImdbMovies::CLI
 		}
 	end
 
-
 	# Gets user's input and calls a different navigation methood based on input
 	def input(user_input, movie_links)
 
 		case user_input
 		when "",  "menu", "exit", "quit"
-			return 
 		when "1", "opening this week"
 			Display.new(@imdb_page[0][1]).opening
 		when "2", "now playing"
@@ -71,11 +71,7 @@ class ImdbMovies::CLI
 			movie_link = movie_links.detect { |m| 
 				m[0].downcase.include?(user_input) }
 
-			if movie_link
-				Display.new().movie(movie_link[1])
-			else
-				puts "\nI'm sorry I don't know what you mean."
-			end
+			movie_link ? (Display.new().movie(movie_link[1])) : (puts "\nI'm sorry I don't know what you mean.")
 		end
 	end
 

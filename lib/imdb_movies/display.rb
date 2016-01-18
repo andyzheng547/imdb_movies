@@ -1,15 +1,13 @@
-require_relative 'movies_scraper.rb'
+require_relative 'movie_links_scraper.rb'
 require_relative 'movie.rb'
 
 class Display
 
 	attr_accessor :links
 
-
 	def initialize(links = nil)
 		@links = links
 	end
-
 
 	def opening
 		puts @links.opening_week + "\n\n"
