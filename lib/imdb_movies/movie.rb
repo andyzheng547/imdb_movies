@@ -60,6 +60,7 @@ class Movie
 		puts "Genre: \t\t#{@genres}"
 		puts "Release Date: \t#{@release_date}"
 		puts "IMDB Rating: \t#{@imdb_rating}/10.0"
+		puts "Description: \t#{@description}"
 		puts "Director(s): \t#{@directors.join(", ")}"
 		puts "Writer(s): \t#{@writers.join(", ")}"
 		puts "Cast: \t\t#{@cast.join(", ")}"

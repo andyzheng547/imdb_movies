@@ -1,43 +1,34 @@
 require_relative 'movies_scraper.rb'
 require_relative 'movie.rb'
 
-class Navigation
+class Display
 
-	attr_accessor :url
+	attr_accessor :links
 
 
-	def initialize(url)
-		@url = url
+	def initialize(links = nil)
+		@links = links
 	end
 
 
 	def opening
-		movies = MoviesScraper.new(@url)
-		movies.opening
-
-		puts movies.opening_week + "\n\n"
-		movies.movie_links.each{|m| puts "\t\t#{m[0]}"}
+		puts @links.opening_week + "\n\n"
+		@links.movie_links.each{|m| puts "\t\t#{m[0]}"}
 
 	end
 
 	def now_playing
-		movies = MoviesScraper.new(@url)
-		movies.now_playing
-
 		puts "Now Playing\n\n"
-		movies.movie_links.each{|m| puts "\t\t#{m[0]}"}
+		@links.movie_links.each{|m| puts "\t\t#{m[0]}"}	
 	end
 
 	def coming_soon
-		movies = MoviesScraper.new(@url)
-		movies.coming_soon
-
-		puts "Coming Soon - \t" + movies.opening_week + "\n\n"
-		movies.movie_links.each{|m| puts "\t\t#{m[0]}"}
+		puts "Coming Soon - \t" + @links.opening_week + "\n\n"
+		@links.movie_links.each{|m| puts "\t\t#{m[0]}"}	
 	end
 
-	def movie
-		movie = Movie.new(@url)
+	def movie(movie_url)
+		movie = Movie.new(movie_url)
 		movie.display_info
 
 		print "\nDo you want to see the trailer for this movie (Y/N):\t"

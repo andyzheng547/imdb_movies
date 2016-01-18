@@ -5,12 +5,16 @@ require_relative 'navigation.rb'
 
 class ImdbMovies::CLI
 
-	attr_accessor :nav_links, :movie_links
+	attr_accessor :imdb_page, :nav_links, :movie_links
 
 	DONT_DISPLAY_MENU_IF = ["1", "2", "3", "opening this week", "now playing", "coming soon", "exit", "quit", ""]
 
 	def initialize
 		@nav_links, @movie_links = [], []
+		@imdb_page = ImdbScraper.new.scrape
+
+		@imdb_page.each{|cat| @nav_links << cat[0][1] }
+		@imdb_page.each{|cat| cat[1].movie_links.each{|movie| @movie_links << movie}}
 	end
 
 	# Main CLI
@@ -26,7 +30,7 @@ class ImdbMovies::CLI
 			print "Input : "
 
 			user_input = gets.strip.downcase
-			input(user_input, nav_links, movie_links)
+			input(user_input, movie_links)
 			main_menu if !DONT_DISPLAY_MENU_IF.include?(user_input)
 		end
 
@@ -34,45 +38,33 @@ class ImdbMovies::CLI
 	end
 
 	# Displays categories (opening this week, now playing, coming soon) 
-	# then returns links to call method so that input method can use them
 	def main_menu
-		# Gets array from ImdbScraper in this format:
-		#		[	array containing the category and link to see more movies on IMDB,
-		#			array of arrays each containing a movie title and
-		#			the link to that movies IMDB pages 		
-		# 		]
-		imdb_main = ImdbScraper.new.scrape
 
 		# Displays categories
-		imdb_main.each.with_index(1){|section, index| 
+		@imdb_page.each.with_index(1){|section, index| 
 			puts "\n#{index} - #{section[0][0].gsub(/\(\w+\)/, '')}"
-			section[1].movie_links.each{|movie|
+			section[1].movie_links[0...5].each{|movie|
 				puts "\t\t#{movie[0]}"
 			}
 			puts "\tEnter '#{index}' to see more."
 		}
-
-		# nav_links array contains links to pages to see more movies
-		# movie_links array contains arrays with a movie title and a link to that movie on IMDB
-		imdb_main.each{|cat| @nav_links << cat[0][1] }
-		imdb_main.each{|cat| cat[1].movie_links.each{|movie| @movie_links << movie}}
 	end
 
 
 	# Gets user's input and calls a different navigation methood based on input
-	def input(user_input, nav_links, movie_links)
-		movie_links
+	def input(user_input, movie_links)
+
 		case user_input
 		when "",  "menu", "exit", "quit"
 			return 
 		when "1", "opening this week"
-			Navigation.new(nav_links[0]).opening
+			Display.new(@imdb_page[0][1]).opening
 		when "2", "now playing"
-			Navigation.new(nav_links[1]).now_playing
+			Display.new(@imdb_page[1][1]).now_playing
 		when "3", "coming soon"
-			Navigation.new(nav_links[2]).coming_soon
+			Display.new(@imdb_page[2][1]).coming_soon
 
-		# When movie is entered it calls Navigation.movie
+		# When movie is entered it calls Display.movie
 		# Otherwise it outputs a message.
 		else
 			# Nil if movie was not found
@@ -80,7 +72,7 @@ class ImdbMovies::CLI
 				m[0].downcase.include?(user_input) }
 
 			if movie_link
-				Navigation.new(movie_link[1]).movie
+				Display.new().movie(movie_link[1])
 			else
 				puts "\nI'm sorry I don't know what you mean."
 			end
