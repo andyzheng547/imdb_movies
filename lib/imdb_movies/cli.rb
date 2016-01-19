@@ -65,7 +65,7 @@
 		else
 			# Nil if movie was not found
 			movie_link = movie_links.detect { |m| 
-				m[0].downcase.include?(user_input) }
+				m[0].downcase.gsub(/[^\w\s]+/, '').squeeze(" ").include?(user_input) }
 
 			movie_link ? (Display.new().movie(movie_link[1])) : (puts "\nI'm sorry I don't know what you mean.")
 		end
