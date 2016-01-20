@@ -70,7 +70,15 @@
 
 	def open_trailer
 		begin
-			exec("open #{@trailer_link}") || exec("start #{@trailer_link}") || exec("xdg-open #{@trailer_link}")
+			exec("open #{@trailer_link}")
+		rescue SystemCallError
+		end
+		begin
+			exec("start #{@trailer_link}")
+		rescue SystemCallError
+		end
+		begin
+			exec("xdg-open #{@trailer_link}")
 		rescue SystemCallError
 		end
 	end

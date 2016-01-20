@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["andy.zheng249@gmail.com"]
 
   spec.summary       = %q{Look at current/upcoming movies via. IMDB's website}
-  spec.description   = %q{Navigate the CLI menu. View info and play trailers for upcomng films.}
+  spec.description   = %q{Navigate the CLI menu. View info and play trailers for upcoming films.}
   spec.homepage      = "https://github.com/azheng249/imdb_movies"
   spec.license       = "MIT"
 
