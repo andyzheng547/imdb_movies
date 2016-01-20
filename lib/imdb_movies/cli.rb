@@ -32,7 +32,7 @@ class ImdbMovies::CLI
 			puts "The movie name does not have to be case sensitive to get the info."
 			print "\nInput : "
 
-			user_input = gets.strip.downcase
+			user_input = gets.strip.downcase.gsub(/[^\w\s]+/, '').squeeze(" ")
 			input(user_input)
 
 			# Only displays the menu again if they entered a movie name or 'menu'
@@ -84,7 +84,7 @@ class ImdbMovies::CLI
 				movie = Movie.new(@all_movie_links[found_movie_index])
 				movie.display_info
 
-				print "\nDo you want to see the trailer on Youtube? Y / N "
+				print "\nDo you want to see the trailer on Youtube (Y/N)?  "
 				input = gets.strip.downcase
 				movie.open_trailer if input == "yes" || input == "y"
 			else
