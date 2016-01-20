@@ -2,6 +2,10 @@
 
 Welcome to IMDB Movies. This is a Ruby gem that works through CLI. It pulls the info for top current and upcoming films on IMDB's website. Use the CLI to navigate and display information about films you are curious about. Want to see the trailer? We can show it to you.
 
+  * Version 1.0.3 was downloaded about 100 times but open trailer feature only worked for Macs. Did not want to yank for those 100 people.
+  * Version 1.0.5 is a working version but code is not readable. Apologies if you were interested in looking at the code.
+  * Version 1.0.6 is the same as 1.0.5 in terms of functionality but code structure, design, and variable names were changed to improve readability. Load time is slightly longer though (about 1 sec).
+
 ## Usage
 
 When loaded, the movies will display in 3 categories: Opening This Week, Now Playing, and Coming Soon. The CLI works through text input and is not case sensitive.
