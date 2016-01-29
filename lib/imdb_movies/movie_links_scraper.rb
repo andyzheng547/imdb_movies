@@ -15,7 +15,7 @@
 		# The movie names and links to the movies' IMDB pages are returned back to ImdbScraper
 		def opening
 			doc = Nokogiri::HTML(open(@url))
-			movie_links = doc.css(".article .list")[1].css(".list_item h4[itemprop = 'name'] a")
+			movie_links = doc.css(".article .list")[0].css(".list_item h4[itemprop = 'name'] a")
 			add_movie_name_and_links(movie_links)
 
 			# Stores the header that is shown on the opening week movies page
