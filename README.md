@@ -1,6 +1,6 @@
 # Note: No longer up to date with imdb.com
 
-The website made changes in its HTML and CSS and the project no longer scraps the right info. The gem was made a while ago with when I was still learning. There were inconsistencies between the structure on different movie display pages, and it made an attempted update difficult. I did not account for drastic changes when I was first making a web scraping application. I have a much better respect for web apis because of this.
+The website made changes in its HTML and CSS and the project no longer scraps the right info. The gem was made a while ago with when I was still learning. There were inconsistencies between the structure on different movie display pages, and it made an attempted update difficult. 
 
 # IMDB Movies
 
